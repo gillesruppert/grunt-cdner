@@ -30,27 +30,28 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     cdnify: {
-      default_options: {
+      cdn_option: {
         options: {
+          cdn: '//my.cdn.example.com'
         },
         files: {
-          'tmp/default_options.css': ['test/fixtures/images.css'],
-          'tmp/default_options.html': ['test/fixtures/index.html'],
+          'tmp/cdn_option.css': ['test/fixtures/images.css'],
+          'tmp/cdn_option.html': ['test/fixtures/index.html'],
         },
       },
-      ignore_option: {
-        options: {
-          buster: '0.2.0',
-          ignore: [
-            'cdn.1.test.com',
-            '//cdn.2.test.com',
-          ]
-        },
-        files: {
-          'tmp/ignore_option.css': ['test/fixtures/images.css'],
-          'tmp/ignore_option.html': ['test/fixtures/index.html'],
-        }
-      }
+      //ignore_option: {
+        //options: {
+          //buster: '0.2.0',
+          //ignore: [
+            //'cdn.1.test.com',
+            //'//cdn.2.test.com',
+          //]
+        //},
+        //files: {
+          //'tmp/ignore_option.css': ['test/fixtures/images.css'],
+          //'tmp/ignore_option.html': ['test/fixtures/index.html'],
+        //}
+      //}
     },
 
     // Unit tests.
