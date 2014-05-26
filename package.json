@@ -1,11 +1,12 @@
 {
   "name": "grunt-cdnify",
   "description": "Add CDN hosts to all your static assets",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/gillesruppert/grunt-cdnify",
   "author": {
     "name": "Gilles Ruppert",
-    "email": "gilles@madeofbytes.com"
+    "email": "gilles@madeofbytes.com",
+    "url": "http://madeofbytes.com"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,15 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
-  ]
+    "gruntplugin",
+    "cdn",
+    "css",
+    "html",
+    "image",
+    "images",
+    "static assets"
+  ],
+  "dependencies": {
+    "interpolate": "^0.1.0"
+  }
 }
