@@ -18,7 +18,7 @@ function isPathAbsolute(p) {
 
 function hasHost(p) {
   var host = /^https?:\/\/*/;
-  return host.test(p) || p.indexOf('\\') === 0 ;
+  return host.test(p) || p.indexOf('//') === 0 ;
 }
 
 function isCss(filepath) {
