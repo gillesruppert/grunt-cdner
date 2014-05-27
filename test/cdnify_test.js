@@ -89,7 +89,7 @@ exports.cdnify = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/cdn_with_path.css');
-    var expected = grunt.file.read('test/expected/cdn_with_path.css');
+    var expected = grunt.file.read('test/expected/all_opts.css');
     test.equal(actual, expected, 'cdn with paths should work fine (css)');
 
     test.done();
@@ -98,7 +98,7 @@ exports.cdnify = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/cdn_with_path.html');
-    var expected = grunt.file.read('test/expected/cdn_with_path.html');
+    var expected = grunt.file.read('test/expected/all_opts.html');
     test.equal(actual, expected, 'cdn with paths should work fine (html)');
 
     test.done();
@@ -108,7 +108,7 @@ exports.cdnify = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/cdn_with_trailing_slash.css');
-    var expected = grunt.file.read('test/expected/cdn_with_trailing_slash.css');
+    var expected = grunt.file.read('test/expected/all_opts.css');
     test.equal(actual, expected, 'cdn with trailing slash should work fine (css)');
 
     test.done();
@@ -117,7 +117,7 @@ exports.cdnify = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/cdn_with_trailing_slash.html');
-    var expected = grunt.file.read('test/expected/cdn_with_trailing_slash.html');
+    var expected = grunt.file.read('test/expected/all_opts.html');
     test.equal(actual, expected, 'cdn with trailing slash should work fine (html)');
 
     test.done();
