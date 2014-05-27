@@ -28,6 +28,7 @@ grunt.initConfig({
     options: {
       cdn: '//example.com'
       ignore: [],
+      root: 'dest',
       htmlExtension: 'html'
     },
     your_target: {
@@ -60,6 +61,14 @@ Default value: `[]`
 Array of strings that if found in the path are **not** modified. This is useful if
 you have some assets that are not hosted on a CDN.
 
+#### options.root
+Type: `String`
+Default value: `''`
+
+String that represents the root of the server, i.e. if your files are served out
+of a `dist` directory, you need to set the root to `dist`. This is to resolve 
+relative paths correctly.
+
 ### Usage Examples
 
 #### options.cdn
@@ -71,7 +80,8 @@ grunt.initConfig({
       ignore: [
         '//3rd-party.cdn.example.com'
       ],
-      htmlExtension: 'htm'
+      htmlExtension: 'htm',
+      root: 'dest'
     },
     build: {
       files: {
@@ -120,10 +130,13 @@ or
 <img src="//my.cdn/example.com/testing.png">
 ```
 
+**N.B: if root hadn't been set to `dest`, the resulting path would be
+`//3rd-party.cdn.example.com/dest/testing.png` for a path of `testing.png`!!!**
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 
- * 2013-10-07   v0.1.0   initial release
+ * 2014-05-27   v0.1.0   initial release
