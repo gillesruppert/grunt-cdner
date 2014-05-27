@@ -33,19 +33,19 @@ exports.cdnify = {
 
     var actual = grunt.file.read('tmp/cdn_option.css');
     var expected = grunt.file.read('test/expected/cdn_option.css');
-    test.equal(actual, expected, 'CSS should have versioned images with buster option');
+    test.equal(actual, expected, 'CSS should have images prefixed with cdn option');
 
     test.done();
   },
-  //cdn_option_html: function(test) {
-    //test.expect(1);
+  cdn_option_html: function(test) {
+    test.expect(1);
 
-    //var actual = grunt.file.read('tmp/cdn_option.html');
-    //var expected = grunt.file.read('test/expected/cdn_option.html');
-    //test.equal(actual, expected, 'HTML should have versioned assets with buster option');
+    var actual = grunt.file.read('tmp/cdn_option.html');
+    var expected = grunt.file.read('test/expected/cdn_option.html');
+    test.equal(actual, expected, 'HTML should have assets prefixed with cdn option');
 
-    //test.done();
-  //},
+    test.done();
+  },
 
   //ignore_option_css: function(test) {
     //test.expect(1);

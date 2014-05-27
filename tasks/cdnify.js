@@ -60,13 +60,13 @@ function addCdnToCss(css, wwwPath, options) {
 
 function addCdnToHtml(html, wwwPath, options) {
   var css = /href="(.+\.css)"/gi;
-  html = html.replace(css, replace('href="{p1}?v={buster}"', wwwPath, options));
+  html = html.replace(css, replace('href="{url}"', wwwPath, options));
 
   var js = /src="(.+\.js)"/gi;
-  html = html.replace(js, replace('src="{p1}?v={buster}"', wwwPath, options));
+  html = html.replace(js, replace('src="{url}"', wwwPath, options));
 
   var images = /src="(.+\.(?:png|gif|jpg|jpeg))"/gi;
-  html = html.replace(images, replace('src="{p1}?v={buster}"', wwwPath, options));
+  html = html.replace(images, replace('src="{url}"', wwwPath, options));
   return html;
 }
 
