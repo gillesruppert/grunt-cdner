@@ -142,4 +142,23 @@ exports.cdnify = {
     test.done();
   },
 
+  root_with_leading_slash_css: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/root_with_leading_slash.css');
+    var expected = grunt.file.read('test/expected/all_opts.css');
+    test.equal(actual, expected, 'root with leading slash should work fine (css)');
+
+    test.done();
+  },
+  root_with_leading_slash_html: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/root_with_leading_slash.html');
+    var expected = grunt.file.read('test/expected/all_opts.html');
+    test.equal(actual, expected, 'root with leading slash should work fine (html)');
+
+    test.done();
+  },
+
 };

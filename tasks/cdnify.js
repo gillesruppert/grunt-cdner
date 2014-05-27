@@ -15,8 +15,22 @@ function hasTrailingSlash(p) {
   return p.charAt(p.length - 1) === '/';
 }
 
+function hasLeadingSlash(p) {
+  return p.charAt(0) === '/';
+}
+
 function removeTrailingSlash(p) {
-  return p.slice(0, -1);
+  if (hasTrailingSlash(p)) {
+    return p.slice(0, -1);
+  }
+  return p;
+}
+
+function removeLeadingSlash(p) {
+  if (hasLeadingSlash(p)) {
+    return p.slice(1);
+  }
+  return p;
 }
 
 function isPathAbsolute(p) {
@@ -118,14 +132,8 @@ module.exports = function(grunt) {
     });
 
     // remove trailing slash from cdn
-    if (hasTrailingSlash(options.cdn)) {
-      options.cdn = removeTrailingSlash(options.cdn);
-    }
-
-    // remove trailing slash from root
-    if (hasTrailingSlash(options.root)) {
-      options.root = removeTrailingSlash(options.root);
-    }
+    options.cdn = removeTrailingSlash(options.cdn);
+    options.root = removeLeadingSlash(removeTrailingSlash(options.root));
 
     // Iterate over all specified file groups.
     this.files.forEach(function(files) {
