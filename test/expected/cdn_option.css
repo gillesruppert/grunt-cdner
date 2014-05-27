@@ -2,6 +2,10 @@ h1 {
   background-image: url(//my.cdn.example.com/tmp/hello.png);
 }
 
+h1 {
+  background-image: url(//my.cdn.example.com/tmp/hello.png);
+}
+
 h2 {
   background-image: url(//my.cdn.example.com/hello.png);
 }
@@ -15,5 +19,5 @@ h4 {
 }
 
 h5 {
-  background-image: url('data:image/png;base64,TEST==');
+  background-image: url(//my.cdn.example.com/img/hello.png);
 }

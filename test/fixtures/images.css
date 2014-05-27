@@ -1,4 +1,8 @@
 h1 {
+  background-image: url(./hello.png);
+}
+
+h1 {
   background-image: url(hello.png);
 }
 
@@ -15,5 +19,5 @@ h4 {
 }
 
 h5 {
-  background-image: url('data:image/png;base64,TEST==');
+  background-image: url(../img/hello.png);
 }
