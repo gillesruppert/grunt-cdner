@@ -47,24 +47,24 @@ exports.cdnify = {
     test.done();
   },
 
-  //ignore_option_css: function(test) {
-    //test.expect(1);
+  ignore_option_css: function(test) {
+    test.expect(1);
 
-    //var actual = grunt.file.read('tmp/ignore_option.css');
-    //var expected = grunt.file.read('test/expected/ignore_option.css');
-    //test.equal(actual, expected, 'css url paths in the ignore option should not be busted');
+    var actual = grunt.file.read('tmp/ignore_option.css');
+    var expected = grunt.file.read('test/expected/ignore_option.css');
+    test.equal(actual, expected, 'css url paths in the ignore option should be prefixed with the cdn');
 
-    //test.done();
-  //},
-  //ignore_option_html: function(test) {
-    //test.expect(1);
+    test.done();
+  },
+  ignore_option_html: function(test) {
+    test.expect(1);
 
-    //var actual = grunt.file.read('tmp/ignore_option.html');
-    //var expected = grunt.file.read('test/expected/ignore_option.html');
-    //test.equal(actual, expected, 'asset url paths in the ignore option should not be busted');
+    var actual = grunt.file.read('tmp/ignore_option.html');
+    var expected = grunt.file.read('test/expected/ignore_option.html');
+    test.equal(actual, expected, 'asset url paths in the ignore option should not be prefixed with the cdn');
 
-    //test.done();
-  //},
+    test.done();
+  },
 
 
 };

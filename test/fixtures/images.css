@@ -6,6 +6,10 @@ h1 {
   background-image: url(hello.png);
 }
 
+h1 {
+  background-image: url(no/cdn/hello.png);
+}
+
 h2 {
   background-image: url(/hello.png);
 }
