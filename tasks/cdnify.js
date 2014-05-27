@@ -11,6 +11,14 @@
 var interpolate = require('interpolate');
 var path = require('path');
 
+function hasTrailingSlash(p) {
+  return p.charAt(p.length - 1) === '/';
+}
+
+function removeTrailingSlash(p) {
+  return p.slice(0, -1);
+}
+
 function isPathAbsolute(p) {
   // absolute path start with: /
   return p.charAt(0) === '/';
@@ -110,8 +118,13 @@ module.exports = function(grunt) {
     });
 
     // remove trailing slash from cdn
-    if (options.cdn.charAt(options.cdn.length - 1) === '/') {
-      options.cdn = options.cdn.slice(0, -1);
+    if (hasTrailingSlash(options.cdn)) {
+      options.cdn = removeTrailingSlash(options.cdn);
+    }
+
+    // remove trailing slash from root
+    if (hasTrailingSlash(options.root)) {
+      options.root = removeTrailingSlash(options.root);
     }
 
     // Iterate over all specified file groups.

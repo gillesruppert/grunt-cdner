@@ -93,6 +93,20 @@ module.exports = function(grunt) {
           'tmp/cdn_with_trailing_slash.css': ['test/fixtures/images.css'],
           'tmp/cdn_with_trailing_slash.html': ['test/fixtures/index.html'],
         }
+      },
+
+      root_with_trailing_slash: {
+        options: {
+          cdn: '//my.cdn.example.com/assets/',
+          ignore: [
+            'no/cdn'
+          ],
+          root: 'tmp/'
+        },
+        files: {
+          'tmp/root_with_trailing_slash.css': ['test/fixtures/images.css'],
+          'tmp/root_with_trailing_slash.html': ['test/fixtures/index.html'],
+        }
       }
     },
 
