@@ -104,4 +104,23 @@ exports.cdnify = {
     test.done();
   },
 
+  cdn_with_trailing_slash_css: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/cdn_with_trailing_slash.css');
+    var expected = grunt.file.read('test/expected/cdn_with_trailing_slash.css');
+    test.equal(actual, expected, 'cdn with trailing slash should work fine (css)');
+
+    test.done();
+  },
+  cdn_with_trailing_slash_html: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/cdn_with_trailing_slash.html');
+    var expected = grunt.file.read('test/expected/cdn_with_trailing_slash.html');
+    test.equal(actual, expected, 'cdn with trailing slash should work fine (html)');
+
+    test.done();
+  },
+
 };

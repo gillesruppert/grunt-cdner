@@ -109,6 +109,11 @@ module.exports = function(grunt) {
       root: ''
     });
 
+    // remove trailing slash from cdn
+    if (options.cdn.charAt(options.cdn.length - 1) === '/') {
+      options.cdn = options.cdn.slice(0, -1);
+    }
+
     // Iterate over all specified file groups.
     this.files.forEach(function(files) {
       var src = files.src.filter(function(filepath) {
