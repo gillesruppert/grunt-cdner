@@ -1,3 +1,7 @@
 h1 {
+  background-image: url(hello.png);
+}
+
+h2 {
   background-image: url(/hello.png);
 }

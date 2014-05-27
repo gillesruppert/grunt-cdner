@@ -1,3 +1,7 @@
 h1 {
+  background-image: url(//my.cdn.example.com/tmp/hello.png);
+}
+
+h2 {
   background-image: url(//my.cdn.example.com/hello.png);
 }

@@ -9,6 +9,17 @@
 'use strict';
 
 var interpolate = require('interpolate');
+var path = require('path');
+
+function isPathAbsolute(p) {
+  // absolute path start with: /
+  return p.charAt(0) === '/';
+}
+
+function hasHost(p) {
+  var host = /^https?:\/\/*/;
+  return host.test(p) || p.indexOf('\\') === 0 ;
+}
 
 function isCss(filepath) {
   return (/\.css$/).test(filepath);
@@ -19,48 +30,69 @@ function isHtml(filepath, extension) {
   return htmlTest.test(filepath);
 }
 
-function replace(replacer, options) {
+function buildUrl(url, wwwPath, options) {
+  if (hasHost(url)) {
+    return url;
+  } else if (isPathAbsolute(url)) {
+    return options.cdn + url;
+  } else {
+    // TODO: create relative path
+    var p = path.join(wwwPath, url);
+    return options.cdn + '/' + p;
+  }
+}
+
+function replace(replacer, wwwPath, options) {
   return function _replace(match, p1) {
     if (!options.ignore.some(function (ignore) { return match.indexOf(ignore) > -1; })) {
-      if (p1.indexOf('/') !== 0 && options.cdn.lastIndexOf('/') !== options.cdn.length - 1) {
-        p1 = p1 + '/';
-      }
-      return interpolate(replacer, { p1: p1, cdn: options.cdn });
+      var url = buildUrl(p1, wwwPath, options);
+      return interpolate(replacer, { url: url });
     } else {
       return match;
     }
   };
 }
 
-function addCdnToCss(css, options) {
-  console.log('css cdn', options.cdn)
+function addCdnToCss(css, wwwPath, options) {
   var img = /url\(['"]?(?!data:)([^)'"?]+)['"]?(?:\?v=[0-9]+)*\)/gi;
-  return css.replace(img, replace('url({cdn}{p1})', options));
+  return css.replace(img, replace('url({url})', wwwPath, options));
 }
 
-function addCdnToHtml(html, options) {
+function addCdnToHtml(html, wwwPath, options) {
   var css = /href="(.+\.css)"/gi;
-  html = html.replace(css, replace('href="{p1}?v={buster}"', options));
+  html = html.replace(css, replace('href="{p1}?v={buster}"', wwwPath, options));
 
   var js = /src="(.+\.js)"/gi;
-  html = html.replace(js, replace('src="{p1}?v={buster}"', options));
+  html = html.replace(js, replace('src="{p1}?v={buster}"', wwwPath, options));
 
   var images = /src="(.+\.(?:png|gif|jpg|jpeg))"/gi;
-  html = html.replace(images, replace('src="{p1}?v={buster}"', options));
+  html = html.replace(images, replace('src="{p1}?v={buster}"', wwwPath, options));
   return html;
+}
+
+function buildWwwPath(p, options) {
+  var wwwPath = path.dirname(p);
+  if (wwwPath.indexOf(options.root) === 0) {
+    wwwPath = wwwPath.slice(options.root.length);
+  }
+  return wwwPath;
 }
 
 
 module.exports = function(grunt) {
 
   function cdnify(src, files, options) {
+    // wwwPath is the absolute path of the file, relative to the server root,
+    // i.e. asset/css can be pointed to by http://example.com/asset/css
+    var wwwPath = buildWwwPath(files.dest, options);
+
     if (isCss(files.dest)) {
-      grunt.file.write(files.dest, addCdnToCss(src, options));
+      grunt.file.write(files.dest, addCdnToCss(src, wwwPath, options));
     }
     else if (isHtml(files.dest, options.htmlExtension)) {
-      grunt.file.write(files.dest, addCdnToHtml(src, options));
+      grunt.file.write(files.dest, addCdnToHtml(src, wwwPath, options));
     } else {
-      grunt.file.write(files.dest, addCdnToHtml(src, options));
+      grunt.file.write(files.dest, addCdnToHtml(src, wwwPath, options));
     }
     grunt.log.writeln('Assets in "' + files.dest + '" have a CDN.');
   }
@@ -73,7 +105,8 @@ module.exports = function(grunt) {
     var options = this.options({
       cdn: '',
       ignore: [],
-      htmlExtension: 'html'
+      htmlExtension: 'html',
+      root: ''
     });
 
     // Iterate over all specified file groups.
