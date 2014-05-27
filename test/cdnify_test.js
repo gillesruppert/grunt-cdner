@@ -66,5 +66,42 @@ exports.cdnify = {
     test.done();
   },
 
+  root_option_css: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/root_option.css');
+    var expected = grunt.file.read('test/expected/root_option.css');
+    test.equal(actual, expected, 'relative urls in the css should have the correct base url');
+
+    test.done();
+  },
+  root_option_html: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/root_option.html');
+    var expected = grunt.file.read('test/expected/root_option.html');
+    test.equal(actual, expected, 'relative urls in the html should have the correct base url');
+
+    test.done();
+  },
+
+  cdn_with_path_css: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/cdn_with_path.css');
+    var expected = grunt.file.read('test/expected/cdn_with_path.css');
+    test.equal(actual, expected, 'cdn with paths should work fine (css)');
+
+    test.done();
+  },
+  cdn_with_path_html: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/cdn_with_path.html');
+    var expected = grunt.file.read('test/expected/cdn_with_path.html');
+    test.equal(actual, expected, 'cdn with paths should work fine (html)');
+
+    test.done();
+  },
 
 };

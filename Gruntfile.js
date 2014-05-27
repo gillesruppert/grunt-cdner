@@ -39,6 +39,7 @@ module.exports = function(grunt) {
           'tmp/cdn_option.html': ['test/fixtures/index.html'],
         },
       },
+
       ignore_option: {
         options: {
           cdn: '//my.cdn.example.com',
@@ -49,6 +50,34 @@ module.exports = function(grunt) {
         files: {
           'tmp/ignore_option.css': ['test/fixtures/images.css'],
           'tmp/ignore_option.html': ['test/fixtures/index.html'],
+        }
+      },
+
+      root_option: {
+        options: {
+          cdn: '//my.cdn.example.com',
+          ignore: [
+            'no/cdn'
+          ],
+          root: 'tmp'
+        },
+        files: {
+          'tmp/root_option.css': ['test/fixtures/images.css'],
+          'tmp/root_option.html': ['test/fixtures/index.html'],
+        }
+      },
+
+      cdn_with_path: {
+        options: {
+          cdn: '//my.cdn.example.com/assets',
+          ignore: [
+            'no/cdn'
+          ],
+          root: 'tmp'
+        },
+        files: {
+          'tmp/cdn_with_path.css': ['test/fixtures/images.css'],
+          'tmp/cdn_with_path.html': ['test/fixtures/index.html'],
         }
       }
     },
