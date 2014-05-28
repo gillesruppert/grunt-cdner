@@ -75,7 +75,7 @@ function replace(replacer, wwwPath, options) {
 }
 
 function addCdnToCss(css, wwwPath, options) {
-  var img = /url\(['"]?(?!data:)([^)'"?]+)['"]?(?:\?v=[0-9]+)*\)/gi;
+  var img = /url\(['"]?(?!data:)([^)'"]+)['"]?\)/gi;
   return css.replace(img, replace('url({url})', wwwPath, options));
 }
 
