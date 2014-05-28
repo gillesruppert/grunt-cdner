@@ -58,9 +58,8 @@ function buildUrl(url, wwwPath, options) {
   } else if (isPathAbsolute(url)) {
     return options.cdn + url;
   } else {
-    // TODO: create relative path
     var p = path.join(wwwPath, url);
-    return options.cdn + '/' + p;
+    return options.cdn + (hasLeadingSlash(p) ? p : ('/' + p));
   }
 }
 
