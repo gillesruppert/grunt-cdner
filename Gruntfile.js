@@ -1,6 +1,6 @@
 /*
- * grunt-cdnify
- * https://github.com/gillesruppert/grunt-cdnify
+ * grunt-cdner
+ * https://github.com/gillesruppert/grunt-cdner
  *
  * Copyright (c) 2014 Gilles Ruppert
  * Licensed under the MIT license.
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    cdnify: {
+    cdner: {
       cdn_option: {
         options: {
           cdn: '//my.cdn.example.com'
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'cdnify', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'cdner', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

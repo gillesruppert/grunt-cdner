@@ -1,6 +1,6 @@
 /*
- * grunt-cdnify
- * https://github.com/gillesruppert/grunt-cdnify
+ * grunt-cdner
+ * https://github.com/gillesruppert/grunt-cdner
  *
  * Copyright (c) 2014 Gilles Ruppert
  * Licensed under the MIT license.
@@ -103,7 +103,7 @@ function buildWwwPath(p, options) {
 
 module.exports = function(grunt) {
 
-  function cdnify(src, files, options) {
+  function cdner(src, files, options) {
     // wwwPath is the absolute path of the file, relative to the server root,
     // i.e. asset/css can be pointed to by http://example.com/asset/css
     var wwwPath = buildWwwPath(files.dest, options);
@@ -122,7 +122,7 @@ module.exports = function(grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('cdnify', 'Add CDN hosts to all your static assets', function() {
+  grunt.registerMultiTask('cdner', 'Add CDN hosts to all your static assets', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       cdn: '',
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
       .join(grunt.util.normalizelf(''));
 
       try {
-        cdnify(src, files, options);
+        cdner(src, files, options);
       } catch (e) {
         grunt.log.error('ERROR:', e.message, e);
         grunt.fail.warn('Failed to add CDN to assets in: ' + files.dest);

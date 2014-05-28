@@ -1,4 +1,4 @@
-# grunt-cdnify
+# grunt-cdner
 
 > Add CDN host to the path of all your static assets
 
@@ -8,23 +8,23 @@ This plugin requires Grunt `~0.4.5`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-cdnify --save-dev
+npm install grunt-cdner --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-cdnify');
+grunt.loadNpmTasks('grunt-cdner');
 ```
 
 ## The `cndify` task
 
 ### Overview
-In your project's Gruntfile, add a section named `cdnify` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `cdner` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  cdnify: {
+  cdner: {
     options: {
       cdn: '//example.com'
       ignore: [],
@@ -74,7 +74,7 @@ relative paths correctly.
 #### options.cdn
 ```js
 grunt.initConfig({
-  cdnify: {
+  cdner: {
     options: {
       cdn: '//my.cdn.example.com',
       ignore: [
@@ -124,7 +124,9 @@ h2 {
 ```
 or
 ```html
-<script src="//my.cdn/example.com/testing.js"></src>
+<script src="//my.cdn/example.com/testing.js">
+
+</src>
 <script src="//3rd-party.cdn.example.com/testing.js"></src>
 <link href="//my.cdn/example.com/testing.css" rel="stylesheet">
 <img src="//my.cdn/example.com/testing.png">
