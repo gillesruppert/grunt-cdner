@@ -89,6 +89,7 @@ function addCdnToHtml(html, wwwPath, options) {
 
   var images = /src="(.+\.(?:png|gif|jpg|jpeg))"/gi;
   html = html.replace(images, replace('src="{url}"', wwwPath, options));
+
   return html;
 }
 
@@ -116,7 +117,7 @@ module.exports = function(grunt) {
     } else {
       grunt.file.write(files.dest, addCdnToHtml(src, wwwPath, options));
     }
-    grunt.log.writeln('Assets in "' + files.dest + '" have a CDN.');
+    grunt.log.writeln('CDN: added to ', files.dest);
   }
 
   // Please see the Grunt documentation for more information regarding task
@@ -139,7 +140,7 @@ module.exports = function(grunt) {
     this.files.forEach(function(files) {
       var src = files.src.filter(function(filepath) {
         if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
+          grunt.log.warn('Source file', filepath, 'not found.');
           return false;
         } else {
           return true;
@@ -151,7 +152,7 @@ module.exports = function(grunt) {
         cdner(src, files, options);
       } catch (e) {
         grunt.log.error('ERROR:', e.message, e);
-        grunt.fail.warn('Failed to add CDN to assets in: ' + files.dest);
+        grunt.fail.warn('CDN: Failed to add CDN to assets in:', files.dest);
       }
     });
 
