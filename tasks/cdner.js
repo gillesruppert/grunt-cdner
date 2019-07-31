@@ -83,10 +83,13 @@ function addCdnToHtml(html, wwwPath, options) {
   var css = /href="(.+\.css)"/gi;
   html = html.replace(css, replace('href="{url}"', wwwPath, options));
 
+  var inlineCss = /url\(\s*'([^"'\)]+\.(?:svg|png|gif|jpg|jpeg))'\s*\)/gi;
+  html = html.replace(inlineCss, replace("url('{url}')", wwwPath, options));
+
   var js = /src="(.+\.js)"/gi;
   html = html.replace(js, replace('src="{url}"', wwwPath, options));
 
-  var images = /src="(.+\.(?:png|gif|jpg|jpeg))"/gi;
+  var images = /src="(.+\.(?:svg|png|gif|jpg|jpeg))"/gi;
   html = html.replace(images, replace('src="{url}"', wwwPath, options));
 
   return html;
