@@ -141,5 +141,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+ * 2019-07-31   v0.3.0   add support for svg and inline background images.
+   (Contributed by @evanderson)
  * 2016-02-28   v0.2.0   add support for Grunt 1.0.0 by updating peer dependencies
  * 2014-05-27   v0.1.0   initial release
